@@ -1,0 +1,84 @@
+﻿@model SATProject.ScheduledClass
+
+@{
+    ViewBag.Title = "Schedule Details";
+}
+
+<h2>Schedule Details</h2>
+
+<div id="courseWrapper">
+    <div id="courseHeader">
+        <h1>Schedule</h1><br />
+    </div>
+    <div id="courseRight">
+        Course:
+        @Html.DisplayFor(model => model.Cours.courseName)<br /><br />
+        Start Date:
+        @if (Model.startDate == null)
+            {
+                @:&nbsp;No Start Date Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.startDate)
+        }
+        <br /><br />
+        End Date:
+        @if (Model.endDate == null)
+            {
+                @:&nbsp;No End Date Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.endDate)
+        }
+        <br /><br />
+        Credit Hours:
+        @if (Model.creditHours == null)
+            {
+                @:&nbsp;No Credit Hours Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.creditHours)
+        }
+        <br /><br />
+        Instructor Name:
+        @if (Model.instructorName == null)
+            {
+                @:&nbsp;No Instructor Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.instructorName)
+        }
+        <br /><br />
+        Location:
+        @if (Model.location == null)
+            {
+                @:&nbsp;No Location Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.location)
+        }
+        <br /><br />
+        Status:
+        @Html.DisplayFor(model => model.ScheduledClassStatu.SCSName)
+    </div>
+    <div id="courseFooter">
+        @if (User.IsInRole("Admin"))
+        {
+        <br />
+        @Html.ActionLink("Edit Schedule", "Edit", new { id=Model.scheduledClassId })        
+        <br /><br />
+            }
+        @Html.ActionLink("Back to Schedules", "Index")
+        <br /><br />
+        @Html.ActionLink("View Enrollments", "Index", "Enrollment")
+    </div>
+</div>
+        
+
+
+    

@@ -1,0 +1,54 @@
+﻿@model SATProject.ScheduledClass
+
+@{
+    ViewBag.Title = "Create Schedule";
+}
+
+<h2>Create Schedule</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div id="courseWrapper">
+        <div id="courseHeader">
+            <h1>Schedule</h1><br />
+        </div>
+        <div id="courseRight">
+            @Html.LabelFor(model => model.courseId, "Course"):
+            @Html.DropDownList("courseId", String.Empty)
+            @Html.ValidationMessageFor(model => model.courseId)<br /><br />
+            @Html.LabelFor(model => model.startDate):
+            @Html.EditorFor(Model => Model.startDate)<br /><br />
+            @Html.ValidationMessageFor(model => model.startDate)
+            @Html.LabelFor(model => model.endDate):
+            @Html.EditorFor(Model => Model.endDate)<br /><br />
+            @Html.ValidationMessageFor(model => model.endDate)
+            @Html.LabelFor(model => model.creditHours):
+            @Html.EditorFor(model => model.creditHours)
+            @Html.ValidationMessageFor(model => model.creditHours)<br /><br />
+            @Html.LabelFor(model => model.instructorName):
+            @Html.EditorFor(model => model.instructorName)
+            @Html.ValidationMessageFor(model => model.instructorName)<br /><br />
+            @Html.LabelFor(model => model.location):
+            @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)<br /><br />
+            @Html.LabelFor(model => model.statusId, "Class Status"):
+            @Html.DropDownList("statusId", String.Empty)
+            @Html.ValidationMessageFor(model => model.statusId)
+        </div>
+        <div id="courseFooter">
+            <br />
+            <input type="submit" value="Create Schedule" />
+            <br /><br />
+            @Html.ActionLink("Back to Schedules", "Index")
+        </div>
+    </div>
+    
+            
+
+            
+}
+
+    

@@ -1,0 +1,106 @@
+﻿@model PagedList.IPagedList<SATProject.ScheduledClass>
+
+@{
+    ViewBag.Title = "Class Schedules";
+}
+
+<h2>Class Schedules</h2>
+@if (User.IsInRole("Admin"))
+{
+    <br />
+<p class="createNew">
+    @Html.ActionLink("Create New Class Schedule", "Create")
+</p>
+}
+<script>
+
+    $(function () {
+        //click even for the reset button
+        $("#reset").click(function () {
+            //clear the textbox
+            $("#search").val("");
+            $("#instructorName").val("");
+            //resubmit the form
+            document.forms[0].submit();
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Search Class Schedule</legend>
+        <div><span class="inActive">Search:</span>@Html.TextBox("search")
+            @Html.DropDownList("instructorName", "[ Filter by Instructor ]")
+            @*the name of the dropdownlist MUST match the name of the SelectList in the ViewBag*@
+            <input type="submit" value="Go!" />
+            <input type="button" id="reset" value="Reset" />
+            @if (User.IsInRole("Admin"))
+            {
+            <span class="inActive">Inactive Classes:</span>
+            @Html.CheckBox("showInactive",
+            new { onchange = "document.forms[0].submit();" })
+            }
+        </div>
+    </fieldset>
+    <br /><br />
+}
+@using (Html.BeginForm())
+{
+        <div class="paging">
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "Index", new { page = 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, instructorName = ViewBag.CurrentDept })
+            @:&nbsp;
+            @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, instructorName = ViewBag.CurrentDept })
+        }
+        else
+        {
+            @Html.Raw("&lt;&lt;&nbsp;&lt; Prev")
+        }
+
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, instructorName = ViewBag.CurrentDept })
+            @:&nbsp;
+            @Html.ActionLink(">>", "Index", new { page = Model.PageCount, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, instructorName = ViewBag.CurrentDept })
+        }
+        else
+        {
+            @Html.Raw("Next &gt;&nbsp;&gt;&gt;")
+        }
+       
+    </div>
+}
+@foreach (var item in Model) {
+            
+    <div id="indexWrapper">
+        <div id="indexHeader">
+            Course:<br /><br />
+            Start Date:<br /><br />
+            End Date:<br /><br />
+            Instructor:<br /><br />
+            Status:
+        </div>
+        <div id="indexBody">
+            @Html.ActionLink(item.Cours.courseName, "Details", "Course", new { id=item.courseId }, null)<br /><br />
+            @Html.DisplayFor(modelItem => item.startDate)<br /><br />
+            @Html.DisplayFor(modelItem => item.endDate)<br /><br />
+            @Html.DisplayFor(modelItem => item.instructorName)<br /><br />
+            @Html.DisplayFor(modelItem => item.ScheduledClassStatu.SCSName)
+        </div>
+        <div id="indexFooterS">
+            @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id=item.scheduledClassId })
+            <br /><br />      
+            @Html.ActionLink("Delete", "Delete", new { id=item.scheduledClassId })
+        }
+            <br /><br />
+            @Html.ActionLink("Details", "Details", new { id=item.scheduledClassId }) 
+        </div>
+    </div>
+}

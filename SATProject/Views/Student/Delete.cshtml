@@ -1,0 +1,116 @@
+﻿@model SATProject.Student
+
+@{
+    ViewBag.Title = "Delete Student";
+}
+
+<h2>Delete Student</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div id="courseWrapper">
+    <div id="courseHeader">
+        <h1>@Html.DisplayFor(model => model.firstName)&nbsp;
+        @Html.DisplayFor(model => model.lastName)</h1><br />
+    </div>
+    <div id="courseLeft">
+        @if (Model.pictureUrl == null)
+            {
+                @:&nbsp;No Picture Assigned.
+            }
+            else
+            {
+        <img src="@Url.Content("~/images/students/" + @Model.pictureUrl)"
+            alt="@Model.firstName" width="200" />
+        }
+    </div>
+    <div id="courseRightStudents">       
+        Major:
+        @if (Model.major == null)
+            {
+                @:&nbsp;No Major Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.major)
+        }
+        <br /><br />
+        Classification:
+        @if (Model.classification == null)
+            {
+                @:&nbsp;No Classification Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.classification)
+        }
+        <br /><br />
+        Address:
+        @if (Model.address == null)
+            {
+                @:&nbsp;No Address Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.address)
+        }
+        &nbsp;
+        @if (Model.city == null)
+            {
+                @:&nbsp;No City Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.city)
+        }
+        ,&nbsp;
+        @if (Model.state == null)
+            {
+                @:&nbsp;No State Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.state)
+        }
+        &nbsp;
+        @if (Model.zip == null)
+            {
+                @:&nbsp;No Zip Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.zip)
+        }
+        <br /><br />
+        Phone:
+        @if (Model.phone == null)
+            {
+                @:&nbsp;No Phone Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.phone)
+        }
+        <br /><br />
+        Email:
+        @if (Model.email == null)
+            {
+                @:&nbsp;No Email Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.email)
+        }
+        <br /><br />
+        Status:
+        @Html.DisplayFor(model => model.StudentStatu.SSName)
+    </div>
+    <div id="courseFooter">
+        @using (Html.BeginForm()) {
+    <br />
+        <input type="submit" value="Delete Student" />
+    <br /><br />
+        @Html.ActionLink("Back to Students", "Index")
+}
+    </div>
+</div>

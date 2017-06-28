@@ -1,0 +1,33 @@
+﻿@model SATProject.CourseStatu
+
+@{
+    ViewBag.Title = "Create Course Status";
+}
+
+<h2>Create Course Status</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div id="courseWrapper">
+        <div id="courseHeader">
+            <h1>Course Status</h1><br />
+        </div>
+        <div id="courseRight">
+            @Html.LabelFor(model => model.CSName):
+            @Html.EditorFor(model => model.CSName)
+            @Html.ValidationMessageFor(model => model.CSName)
+        </div>
+        <div id="courseFooter">
+            <br />
+            <input type="submit" value="Create Course Status" />
+            <br /><br />
+            @Html.ActionLink("Back to Course Statuses", "Index")
+        </div>
+    </div>
+}
+
+    

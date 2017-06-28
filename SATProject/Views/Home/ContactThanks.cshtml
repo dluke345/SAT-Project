@@ -1,0 +1,14 @@
+﻿@model SATProject.Models.ContactData
+
+@{
+    ViewBag.Title = "Contact Thanks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thank you, @Model.Name</h2>
+<p>@ViewBag.Message</p>
+
+@if(User.IsInRole("Admin"))
+{
+<p>@ViewBag.ExceptionMessage</p>
+}

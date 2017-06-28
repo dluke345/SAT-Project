@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SATModelStoreContainer" CdmEntityContainer="SATEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="SATModel.Cours">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseDescription" ColumnName="courseDescription" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="curriculum" ColumnName="curriculum" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseStatus">
+      <EntityTypeMapping TypeName="SATModel.CourseStatu">
+        <MappingFragment StoreEntitySet="CourseStatus">
+          <ScalarProperty Name="CSID" ColumnName="CSID" />
+          <ScalarProperty Name="CSName" ColumnName="CSName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enrollments">
+      <EntityTypeMapping TypeName="SATModel.Enrollment">
+        <MappingFragment StoreEntitySet="Enrollments">
+          <ScalarProperty Name="enrollmentId" ColumnName="enrollmentId" />
+          <ScalarProperty Name="scheduledClassId" ColumnName="scheduledClassId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="enrollmentDate" ColumnName="enrollmentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduledClasses">
+      <EntityTypeMapping TypeName="SATModel.ScheduledClass">
+        <MappingFragment StoreEntitySet="ScheduledClasses">
+          <ScalarProperty Name="scheduledClassId" ColumnName="scheduledClassId" />
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="creditHours" ColumnName="creditHours" />
+          <ScalarProperty Name="instructorName" ColumnName="instructorName" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduledClassStatus">
+      <EntityTypeMapping TypeName="SATModel.ScheduledClassStatu">
+        <MappingFragment StoreEntitySet="ScheduledClassStatus">
+          <ScalarProperty Name="SCSID" ColumnName="SCSID" />
+          <ScalarProperty Name="SCSName" ColumnName="SCSName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="SATModel.Student">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="classification" ColumnName="classification" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="pictureUrl" ColumnName="pictureUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentStatus">
+      <EntityTypeMapping TypeName="SATModel.StudentStatu">
+        <MappingFragment StoreEntitySet="StudentStatus">
+          <ScalarProperty Name="SSID" ColumnName="SSID" />
+          <ScalarProperty Name="SSName" ColumnName="SSName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

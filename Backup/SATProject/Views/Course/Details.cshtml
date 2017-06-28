@@ -1,0 +1,65 @@
+﻿@model SATProject.Cours
+
+@{
+    ViewBag.Title = "Course Details";
+}
+
+<h2>Course Details</h2>
+    <div id="courseWrapper">
+        <div id="courseHeader">
+        <h1>@Html.DisplayFor(model => model.courseName)</h1><br />
+        </div>
+        <div id="courseRight">            
+            Department:
+            @if (Model.department == null)
+            {
+                @:&nbsp;No Department Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.department)
+            }
+            <br /><br />
+            Curriculum:
+            @if (Model.curriculum == null)
+            {
+                @:&nbsp;No Curriculum Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.curriculum)
+            }
+            <br /><br />
+            Course Status:
+        @Html.DisplayFor(model => model.CourseStatu.CSName)
+            <br /><br />
+            Notes:<br />
+            @if (Model.notes == null)
+            {
+                @:&nbsp;No Notes Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.notes)
+            }
+            <br /><br />
+            Description:<br />
+            @if (Model.courseDescription == null)
+            {
+                @:&nbsp;No Description Assigned.
+            }
+            else
+            {
+        @Html.DisplayFor(model => model.courseDescription)
+            }
+            </div>
+     <div id="courseFooter">
+         @if (User.IsInRole("Admin"))
+         {
+        <br /> @Html.ActionLink("Edit Course", "Edit", new { id=Model.courseId })
+             <br /><br />
+             }
+             @Html.ActionLink("Back to Courses", "Index")
+         
+         </div>
+    </div>

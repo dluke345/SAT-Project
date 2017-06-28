@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Slippery Rock State University</title>
+<link rel="stylesheet" href="@Url.Content("~/Content/styles.css")" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/tinynav.js")" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+    
+    <script>
+        //anonymous JQuery function - Document.ready()
+        $(function () {
+            //check the width as so
+            if ($(window).width() <= 600) {
+                $("#content").insertBefore(".sidebar");
+            }
+            else {
+                $("#content").insertAfter(".sidebar");
+            }
+
+            //when the window resizes, check the width and move the
+            //sidebar after the mainContent if the width is <= 450
+            $(window).resize(function () {
+                //check for the scrollbar
+                var breakPoint = 600;
+
+                //subtract the width of the scrollbar
+                if ($("body").height() > $(window).height()) {
+                    breakPoint = breakPoint - 17;
+                }
+                //check the width of the window
+                if ($(window).width() <= breakPoint) {
+                    $("#content").insertBefore(".sidebar");
+                }
+                else {
+                    $("#content").insertAfter(".sidebar");
+                }
+            });//end window.resize
+            $("#nav ul").tinyNav({ header: true });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#startDate").datepicker();
+            $("#endDate").datepicker();
+            $("#enrollmentDate").datepicker();
+        });
+  </script>
+    <script>
+        $(function () {
+            $("#creditHours").spinner({ min: 0, max: 10 });
+        });
+    </script>
+<!--
+License: Creative Commons Attribution
+//-->
+</head>
+<body>
+<div id="container">
+	<div id="header">
+    	<h1><a href="@Url.Action("Index", "Home")">Slippery Rock State University</a></h1>
+        <h2>Rock Solid Institute</h2><span><img id="rock" src="@Url.Content("~/images/rock.jpg")" alt="rock" /></span>
+        <div class="clear"></div>
+    </div>
+    <div id="nav">
+    	<ul>
+        	<li class="start selected">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Courses", "Index", "Course")</li>
+            <li>@Html.ActionLink("Schedule", "Index", "Schedule")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li>@Html.Partial("_LogOnPartial")</li>
+        </ul>
+    </div>
+    <div id="body">
+		<div id="content">
+            @RenderBody()
+		</div>
+        
+        @if (User.IsInRole("Admin"))
+        {
+        <div class="sidebar">
+            <ul>	
+               <li>
+                    <h3>Administration</h3>
+                    <ul class="blocklist">
+                        <li>@Html.ActionLink("Students", "Index", "Student")</li>
+                        <li>@Html.ActionLink("Enrollments", "Index", "Enrollment")</li>
+                        <li>@Html.ActionLink("Course Statuses", "Index", "CourseStatus")</li>
+                        <li>@Html.ActionLink("Class Status", "Index", "ScheduleStatus")</li>
+                        <li>@Html.ActionLink("Student Statuses", "Index", "StudentStatus")</li>
+                    </ul>
+                </li> 
+            </ul> 
+        </div>
+        }  
+    	<div class="clear"></div>
+    </div>
+    <div id="footer">
+@*        <div class="footer-content">*@
+      @*      <ul>
+            	<li><h4>Proin accumsan</h4></li>
+                <li><a href="#">Rutrum nulla a ultrices</a></li>
+                <li><a href="#">Blandit elementum</a></li>
+                <li><a href="#">Proin placerat accumsan</a></li>
+                <li><a href="#">Morbi hendrerit libero </a></li>
+                <li><a href="#">Curabitur sit amet tellus</a></li>
+            </ul>
+            
+            <ul>
+            	<li><h4>Condimentum</h4></li>
+                <li><a href="#">Curabitur sit amet tellus</a></li>
+                <li><a href="#">Morbi hendrerit libero </a></li>
+                <li><a href="#">Proin placerat accumsan</a></li>
+                <li><a href="#">Rutrum nulla a ultrices</a></li>
+                <li><a href="#">Cras dictum</a></li>
+            </ul>
+            
+            <ul class="endfooter">
+            	<li><h4>Suspendisse</h4></li>
+                <li><a href="#">Morbi hendrerit libero </a></li>
+                <li><a href="#">Proin placerat accumsan</a></li>
+                <li><a href="#">Rutrum nulla a ultrices</a></li>
+                <li><a href="#">Curabitur sit amet tellus</a></li>
+                <li><a href="#">Donec in ligula nisl.</a></li>
+            </ul>*@
+            
+            <div class="clear"></div>
+@*        </div>*@
+        <div class="footer-bottom">
+            <p>&copy; 2013 <a href="http://www.lukeskydeveloper.com/">Luke Sky Developer</a> By: David Luke</p>
+         </div>
+    </div>
+</div>
+</body>
+</html>

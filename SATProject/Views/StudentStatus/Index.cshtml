@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SATProject.StudentStatu>
+
+@{
+    ViewBag.Title = "Student Statuses";
+}
+
+<h2>Student Statuses</h2>
+
+@if (User.IsInRole("Admin"))
+	{
+    <br />
+<p class="createNew">
+    @Html.ActionLink("Create New Student Status", "Create")
+</p>
+    }
+@foreach (var item in Model) {
+    <div id="indexWrapper">
+        <div id="indexHeader">
+            Student Status:
+        </div>
+        <div id="indexBody">
+            @Html.ActionLink(item.SSName, "Details", new { id=item.SSID })
+        </div>
+        <div id="indexFooterCS">
+            @if (User.IsInRole("Admin"))
+            {
+            @Html.ActionLink("Edit", "Edit", new { id=item.SSID })
+                @:&nbsp;
+            @Html.ActionLink("Delete", "Delete", new { id=item.SSID })
+            }
+        </div>
+    </div>
+}

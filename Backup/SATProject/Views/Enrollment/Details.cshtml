@@ -1,0 +1,35 @@
+﻿@model SATProject.Enrollment
+
+@{
+    ViewBag.Title = "Enrollment Details";
+}
+
+<h2>Enrollment Details</h2>
+
+<div id="courseWrapper">
+    <div id="courseHeader">
+        <h1>Enrollment</h1><br />
+        </div>
+    <div id="courseRight">
+            Student Name:
+            @Html.DisplayFor(model => model.Student.firstName)
+            &nbsp;
+            @Html.DisplayFor(model => model.Student.lastName)
+            <br /><br />
+            Course Name:
+            @Html.DisplayFor(model => model.ScheduledClass.Cours.courseName)<br /><br />
+            Start Date:
+            @Html.DisplayFor(model => model.ScheduledClass.startDate)<br /><br />
+            Enrollment Date:
+            @Html.DisplayFor(model => model.enrollmentDate)
+        </div>
+    <div id="courseFooter">
+        @if (User.IsInRole("Admin"))
+        {
+            <br />
+        @Html.ActionLink("Edit Enrollment", "Edit", new { id=Model.enrollmentId })
+            <br /><br />
+        @Html.ActionLink("Back to Enrollments", "Index")
+        }
+        </div>
+</div>

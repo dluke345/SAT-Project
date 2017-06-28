@@ -1,0 +1,68 @@
+﻿@model SATProject.Student
+
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("Edit", "Student", FormMethod.Post,
+    new { @encType = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.studentId)
+    <div id="courseWrapper">
+        <div id="courseHeader">
+            <h1>Student</h1><br />
+        </div>
+        <div id="courseLeft">
+            Student Image: <input type="file" name="studentImage" id="studentImage" />
+        </div>
+        <div id="courseRightStudents">
+            @Html.LabelFor(model => model.firstName):
+            @Html.EditorFor(model => model.firstName)
+            @Html.ValidationMessageFor(model => model.firstName)<br /><br />
+            @Html.LabelFor(model => model.lastName):
+            @Html.EditorFor(model => model.lastName)
+            @Html.ValidationMessageFor(model => model.lastName)<br /><br />
+            @Html.LabelFor(model => model.major):
+            @Html.EditorFor(model => model.major)
+            @Html.ValidationMessageFor(model => model.major)<br /><br />
+            @Html.LabelFor(model => model.classification):
+            @Html.EditorFor(model => model.classification)
+            @Html.ValidationMessageFor(model => model.classification)<br /><br />
+            @Html.LabelFor(model => model.address):
+            @Html.EditorFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)<br /><br />
+            @Html.LabelFor(model => model.city):
+            @Html.EditorFor(model => model.city)
+            @Html.ValidationMessageFor(model => model.city)<br /><br />
+            @Html.LabelFor(model => model.state):
+            @Html.EditorFor(model => model.state)
+            @Html.ValidationMessageFor(model => model.state)<br /><br />
+            @Html.LabelFor(model => model.zip):
+            @Html.EditorFor(model => model.zip)
+            @Html.ValidationMessageFor(model => model.zip)<br /><br />
+            @Html.LabelFor(model => model.phone):
+            @Html.EditorFor(model => model.phone)
+            @Html.ValidationMessageFor(model => model.phone)<br /><br />
+            @Html.LabelFor(model => model.email):
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)<br /><br />
+            @Html.LabelFor(model => model.statusId, "Student Status"):
+            @Html.DropDownList("statusId", String.Empty)
+            @Html.ValidationMessageFor(model => model.statusId)
+        </div>
+        <div id="courseFooter">
+            <br />
+            <input type="submit" value="Save Changes" />
+            <br /><br />
+            @Html.ActionLink("Back to Students", "Index")
+        </div>
+    </div>
+}
+
+    

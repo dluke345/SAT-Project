@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<SATProject.Enrollment>
+
+@{
+    ViewBag.Title = "Enrollments";
+}
+
+<h2>Enrollments</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <br />
+<p class="createNew">
+    @Html.ActionLink("Create New Enrollment", "Create")
+</p>
+}
+<script>
+
+    $(function () {
+        //click even for the reset button
+        $("#reset").click(function () {
+            //clear the textbox
+            $("#search").val("");
+            $("#courseName").val("");
+            //resubmit the form
+            document.forms[0].submit();
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Search Courses</legend>
+        <div><span class="inActive">Search:</span>@Html.TextBox("search")
+            @Html.DropDownList("courseName", "[ Filter by Course ]")
+            @*the name of the dropdownlist MUST match the name of the SelectList in the ViewBag*@
+            <input type="submit" value="Go!" />
+            <input type="button" id="reset" value="Reset" />
+        </div>
+    </fieldset>
+    <br /><br />
+}
+@using (Html.BeginForm())
+{
+        <div class="paging">
+
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+
+        @if (Model.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "Index", new { page = 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, courseName = ViewBag.CurrentDept })
+            @:&nbsp;
+            @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, courseName = ViewBag.CurrentDept })
+        }
+        else
+        {
+            @Html.Raw("&lt;&lt;&nbsp;&lt; Prev")
+        }
+
+        @if (Model.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, courseName = ViewBag.CurrentDept })
+            @:&nbsp;
+            @Html.ActionLink(">>", "Index", new { page = Model.PageCount, pageSize = ViewBag.pageSize, search = ViewBag.CurrentSearch, courseName = ViewBag.CurrentDept })
+        }
+        else
+        {
+            @Html.Raw("Next &gt;&nbsp;&gt;&gt;")
+        }
+       
+    </div>
+}
+@foreach (var item in Model) {
+    <div id="indexWrapper">
+        <div id="indexHeader">
+            Student Name:<br /><br />
+            Course Name:<br /><br />
+            Start Date:<br /><br />
+            Enrollment Date:
+        </div>
+        <div id="indexBody">
+            @Html.ActionLink(item.Student.firstName + ' ' + item.Student.lastName, "Details", "Student", new { id=item.studentId }, null)
+            <br /><br />
+            @Html.DisplayFor(modelItem => item.ScheduledClass.Cours.courseName)<br /><br />
+            @Html.DisplayFor(modelItem => item.ScheduledClass.startDate)<br /><br />
+            @Html.DisplayFor(modelItem => item.enrollmentDate)
+        </div>
+        <div id="indexFooter">
+            @Html.ActionLink("Edit", "Edit", new { id=item.enrollmentId })
+            <br /> <br /> 
+            @Html.ActionLink("Delete", "Delete", new { id=item.enrollmentId })
+            <br /><br />
+            @Html.ActionLink("Details", "Details", new { id=item.enrollmentId })
+        </div>
+    </div>
+            
+            
+            
+}

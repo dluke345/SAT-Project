@@ -1,0 +1,23 @@
+﻿@model SATProject.CourseStatu
+
+@{
+    ViewBag.Title = "Course Status Details";
+}
+
+<h2>Course Status Details</h2>
+<div id="courseWrapper">
+    <div id="courseHeader">
+        <h1>Course Status</h1><br />
+    </div>
+    <div id="courseRight">
+        Status Name:
+        @Html.DisplayFor(model => model.CSName)
+    </div>
+    <div id="courseFooter">
+        <br />
+        @Html.ActionLink("Edit Course Status", "Edit", new { id=Model.CSID })
+        <br /><br />
+        @Html.ActionLink("Back to Course Statuses", "Index")
+    </div>
+</div>
+
